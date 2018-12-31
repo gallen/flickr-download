@@ -81,6 +81,7 @@ try :
             fOut.write(ps.title + "\n")
             fOut.flush()
             os.chdir("..")
+        print("All photo sets downloaded! Bye!")
 except :
     print("Unexpected error.\n")
     raise
