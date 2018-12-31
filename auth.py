@@ -11,6 +11,6 @@ a = f.auth.AuthHandler()
 perms = "read"
 url = a.get_authorization_url(perms)
 webbrowser.open(url)
-verifier = input("Pleaes type 'oauth_verifier': ")
+verifier = input("Please type 'oauth_verifier': ")
 a.set_verifier(verifier)
 a.save("auth.txt")

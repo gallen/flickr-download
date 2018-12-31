@@ -6,7 +6,7 @@ from pathlib import Path
 import requests
 
 #!!! Get flikr web site cookie and copy here.
-RAW_COOKIES = "="
+RAW_COOKIES = "=" # Replace '=' with your cookies
 cookies = {i.split('=')[0].strip(): i.split('=')[1].strip() for i in RAW_COOKIES.split(';')}
 
 # Save video
