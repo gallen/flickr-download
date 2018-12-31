@@ -12,6 +12,7 @@ cookies = {i.split('=')[0].strip(): i.split('=')[1].strip() for i in RAW_COOKIES
 # Save video
 VEDIO_DOWNLOAD_URL = "https://www.flickr.com/video_download.gne?id="
 VEDIO_FILE_EXT = ".mp4"
+
 def saveVideo(id):
     url = VEDIO_DOWNLOAD_URL + id
     path = id + VEDIO_FILE_EXT

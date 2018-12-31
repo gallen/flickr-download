@@ -52,4 +52,9 @@ RAW_COOKIES = "=" # Replace '=' with your cookies
 ```
 replace '=' with 'cookies' copied from previous step.
 
+* If your video format is not '.mp4', you'll need change this line also,
+```python
+VEDIO_FILE_EXT = ".mp4"
+```
+
 
