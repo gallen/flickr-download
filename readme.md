@@ -24,8 +24,8 @@ Beginning January 8, 2019, free accounts will be limited to 1,000 photos and vid
     python auth.py
     ```
     This will open a browser window and navigate to flickr authentication page. Login with your flickr account(if not logged in already) and authorize access. 
-    ![Authorize](https://user-images.githubusercontent.com/189514/50563971-4e300e00-0cef-11e9-80a3-2df493c32f06.png)
-    ![image](https://user-images.githubusercontent.com/189514/50564206-2cd02180-0cf1-11e9-9e22-7b5ed6261062.png)
+    ![Authorize](https://user-images.githubusercontent.com/189514/50563971-4e300e00-0cef-11e9-80a3-2df493c32f06.png =600x)
+    ![image](https://user-images.githubusercontent.com/189514/50564206-2cd02180-0cf1-11e9-9e22-7b5ed6261062.png =400x)
 
 
     The script will ask you 'oauth_verifier', just copy the verifier code got from flickr authorize page above.
@@ -38,11 +38,13 @@ Beginning January 8, 2019, free accounts will be limited to 1,000 photos and vid
     python download.py
     ```
 
-## <a name="video-notes"></a>Notes for downloading videos.
+    Type your flickr account email address when the script asks. Downloading should start now. It will also save the progress, so it won't start over in case being interrupted for some reasons.
+
+### <a name="video-notes"></a>***Notes for downloading videos.***
 The flickr python api doesn't support download videos. If you have videos in you albums, you'll need a little bit 'hacking'. 
 
 1. First you'll need get 'cookies' from flickr website with your own account.
-![cookies](http://g.recordit.co/6YaiYf8uG5.gif)
+![cookies](http://g.recordit.co/6YaiYf8uG5.gif =800x)
 
 2. Then open 'download.py' and locate this line
 ```python
