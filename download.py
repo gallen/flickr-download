@@ -30,6 +30,10 @@ try :
     u = f.Person.findByEmail(email)
     psc = u.getPhotosets()
 
+    if not os.path.exists("Download"):
+        os.mkdir("Download")
+
+    os.chdir("Download")
     finished = set()
     if os.path.exists("finished.txt"):
         with open("finished.txt") as fIn:
@@ -83,6 +87,7 @@ try :
             fOut.write(title + "\n")
             fOut.flush()
             os.chdir("..")
+        os.chdir("..")
         print("All photo sets downloaded! Bye!")
 except :
     print("Unexpected error.\n")
