@@ -2,6 +2,7 @@ import flickr_api as f
 import sys
 import os
 from pathlib import Path
+from sanitize_filename import sanitize
 
 import requests
 
@@ -29,6 +30,10 @@ try :
     u = f.Person.findByEmail(email)
     psc = u.getPhotosets()
 
+    if not os.path.exists("Download"):
+        os.mkdir("Download")
+
+    os.chdir("Download")
     finished = set()
     if os.path.exists("finished.txt"):
         with open("finished.txt") as fIn:
@@ -38,19 +43,20 @@ try :
 
     with open("finished.txt", "a") as fOut:
         count = 0
-        for ps in psc: 
+        for ps in psc:
             #f.write(ps.title + "\n");
-            if ps.title in finished:
-                print("Photo set: " + ps.title + " already downloaded(skipped)")
+            title = sanitize(ps.title)
+            if title in finished:
+                print("Photo set: " + title + " already downloaded(skipped)")
                 continue
-            
-            idSet = set()
-            idFile = ps.title + ".txt"
 
-            if not os.path.exists(ps.title):
-                print("Creating directory " + ps.title)
-                os.mkdir(ps.title)
-            os.chdir(ps.title)
+            idSet = set()
+            idFile = title + ".txt"
+
+            if not os.path.exists(title):
+                print("Creating directory " + title)
+                os.mkdir(title)
+            os.chdir(title)
 
             if os.path.exists(idFile):
                 with open(idFile) as idF:
@@ -59,16 +65,16 @@ try :
 
             pInfo = ps.getPhotos().info
             with open(idFile, "a") as ids:
-                for page in range(pInfo.pages):                
+                for page in range(pInfo.pages):
                     for p in ps.getPhotos(page=page+1) :
-                        print("Saving photo " + p.id) 
-                        if p.id not in idSet:  
+                        print("Saving photo " + p.id)
+                        if p.id not in idSet:
                             if p.media == 'video':
                                 if RAW_COOKIES == "=":
                                     continue
                                 else:
-                                    saveVideo(p.id)            
-                            else: 
+                                    saveVideo(p.id)
+                            else:
                                 p.save(p.id)
                             count += 1
                             ids.write(p.id + "\n")
@@ -77,10 +83,11 @@ try :
                             print(p.id + " already downloaded(skipped)")
                     print(str(count) + " photos saved.")
 
-            print ("Download " + ps.title + " finished.")
-            fOut.write(ps.title + "\n")
+            print ("Download " + title + " finished.")
+            fOut.write(title + "\n")
             fOut.flush()
             os.chdir("..")
+        os.chdir("..")
         print("All photo sets downloaded! Bye!")
 except :
     print("Unexpected error.\n")
